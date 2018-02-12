@@ -82,6 +82,7 @@ GEM
       pry (>= 0.10.4)
     puma (3.11.2)
     rack (2.0.4)
+    rack-cors (1.0.2)
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -151,6 +152,7 @@ DEPENDENCIES
   pg (~> 0.18)
   pry-rails
   puma (~> 3.7)
+  rack-cors
   rails (~> 5.1.4)
   simple_token_authentication (~> 1.0)
   spring
@@ -161,4 +163,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.0
