@@ -4,6 +4,7 @@ import update from 'immutability-helper'
 import axios from 'axios';
 import User from './User'
 import UserForm from './UserForm'
+import Login from './Login'
 
 class UsersContainer extends Component {
   constructor(props){
@@ -14,7 +15,15 @@ class UsersContainer extends Component {
   }
 
   componentDidMount(){
-  axios.get('http://localhost:3001/api/v1/users.json')
+    axios.get(
+      'http://localhost:3001/api/v1/users.json',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('token')
+        }
+      }
+    )
     .then((response)=>{
       const {data} = response.data;
       console.log(data)
@@ -29,15 +38,6 @@ class UsersContainer extends Component {
     return (
       <div>
         Users
-        <Router>
-          <div>
-            <ul>
-              <li><Link to="/users_create">Create new User </Link></li>
-            </ul>
-            <hr />
-            <Route path="/users_create" component={UserForm} />
-          </div>
-        </Router>
         {this.state.users.map((user) => {
           return(<User user={user} key={user.id} />)
         })}

@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
 import './App.css';
-import UsersContainer from './components/UsersContainer'
+import { BrowserRouter as Router, Route, Link, DefaultRoute } from "react-router-dom";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className='AppHeader'>
-          <h1> User Board </h1>
-        </div>
-        <UsersContainer />
-      </div>
-    );
-  }
-}
+import UsersContainer from './components/UsersContainer'
+import Login from './components/Login'
+import UserForm from './components/UserForm'
+
+const App = () => (
+  <Router>
+    <div>
+      <ul>
+        <li>
+          <Link to='/'>Users</Link>
+        </li>
+        <li>
+          <Link to="/users_create">Create new User </Link>
+        </li>
+        <li>
+          <Link to="/login">Login </Link>
+        </li>
+      </ul>
+
+      <hr />
+      <Route exact path="/" component={UsersContainer} />
+      <Route path="/users_create" component={ UserForm } />
+      <Route path="/login" component={ Login } />
+    </div>
+  </Router>
+);
 
 export default App;
