@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, DefaultRoute } from "react-router
 import UsersContainer from './components/UsersContainer'
 import Login from './components/Login'
 import UserForm from './components/UserForm'
+import RootPage from './components/RootPage'
 
 const App = () => (
   <Router>
@@ -22,7 +23,8 @@ const App = () => (
       </ul>
 
       <hr />
-      <Route exact path="/" component={UsersContainer} />
+      <Route exact path="/" component={RootPage} />
+      <Route path='/users_list' component={UsersContainer} />
       <Route path="/users_create" component={ UserForm } />
       <Route path="/login" component={ Login } />
     </div>

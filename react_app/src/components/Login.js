@@ -32,6 +32,7 @@ class Login extends React.Component {
     .then(response => {
       console.log(response)
       localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('user_role', response.data.role);
     })
     .catch(
       error => console.log(error))

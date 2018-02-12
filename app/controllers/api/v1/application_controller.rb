@@ -25,31 +25,21 @@ class Api::V1::ApplicationController < ApplicationController
     user = User.where(id: user_id).first
 
     if user && Devise.secure_compare(user.access_token, auth_token)
-      # User can access
       sign_in user, store: false
     else
       authentication_error
     end
   end
 
-  ##
-  # Authentication Failure
-  # Renders a 401 error
   def authentication_error
-    # User's token is either invalid or not in the right format
-    render json: {error: t('unauthorized')}, status: 401  # Authentication timeout
+    render json: {error: t('unauthorized')}, status: 401
   end
-  # skip_before_action :verify_authenticity_token
-  # acts_as_token_authentication_handler_for User
 
-  # def current_user
-  #   @user ||= User.find_by_authentication_token(request.headers['X-User-Token'])
-  # end
+  def current_user
+    @user ||= User.find_by_access_token(request.headers['Authorization'])
+  end
 
-  # def admin?
-  #   if current_user.admin?
-  #   else
-  #     render json: {status: 400, message: "Access denied"}
-  #   end
-  # end
+  def admin?
+    current_user.admin?
+  end
 end

@@ -27,6 +27,7 @@ class UserForm extends Component {
         headers: {
           'Content-Type': 'application/json',
           "Access-Control-Allow-Origin": "*",
+          'Authorization': localStorage.getItem('token')
         }
       }
     )
@@ -42,18 +43,22 @@ class UserForm extends Component {
   }
 
   render() {
-    return (
-      <div className="name">
-        <form>
+    if (localStorage.getItem('user_role') == 'admin') {
+      return (
+        <div className="name">
           <input className="input" type="text" name="email" placeholder='Email' value={this.state.email} onChange={this.handleInput} />
           <input className="input" type="text" name="password" placeholder='Passowrd' value={this.state.password} onChange={this.handleInput}/>
           <button className='newUser'
             onClick={this.addNewUser} >
             Create User
           </button>
-        </form>
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return (
+        <h2> Unauthorized </h2>
+      );
+    }
   }
 }
 
