@@ -7,7 +7,7 @@ class RootPage extends React.Component {
   render() {
     const user = localStorage.getItem('token');
     if (user) {
-      return <Redirect to="/users_list" />
+      return <Redirect to="/" />
     } else {
       return <Redirect to="/login" />
     }
