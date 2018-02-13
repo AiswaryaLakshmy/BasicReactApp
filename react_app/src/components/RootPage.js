@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Redirect } from 'react-router'
 import UsersContainer from './UsersContainer'
 import Login from './Login'
 
@@ -6,9 +7,9 @@ class RootPage extends React.Component {
   render() {
     const user = localStorage.getItem('token');
     if (user) {
-      return < UsersContainer />
+      return <Redirect to="/users_list" />
     } else {
-      return < Login />
+      return <Redirect to="/login" />
     }
   }
 }

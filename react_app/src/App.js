@@ -23,8 +23,8 @@ const App = () => (
       </ul>
 
       <hr />
-      <Route exact path="/" component={RootPage} />
-      <Route path='/users_list' component={UsersContainer} />
+      <Route exact path="/" component={ RootPage } />
+      <Route path='/users_list' component={ UsersContainer } />
       <Route path="/users_create" component={ UserForm } />
       <Route path="/login" component={ Login } />
     </div>

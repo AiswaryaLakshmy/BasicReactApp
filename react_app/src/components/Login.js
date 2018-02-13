@@ -1,7 +1,16 @@
 import React from 'react';
 import axios from 'axios'
+import PropTypes from "prop-types";
 
 class Login extends React.Component {
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+  constructor(props, context) {
+     super(props, context);
+  }
+
   state = {
     email: '',
     password: '',
@@ -14,7 +23,6 @@ class Login extends React.Component {
   }
 
   loginUser = () => {
-    debugger
     axios.post(
       'http://localhost:3001/api/v1/users/sign_in.json',
       { user:
@@ -33,6 +41,8 @@ class Login extends React.Component {
       console.log(response)
       localStorage.setItem('token', response.data.access_token);
       localStorage.setItem('user_role', response.data.role);
+      localStorage.setItem('login', true);
+      this.context.router.history.push("/users_list");
     })
     .catch(
       error => console.log(error))
