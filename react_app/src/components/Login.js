@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import PropTypes from "prop-types";
+import ConstantsStore from '../helper/ConstantsStore'
 
 class Login extends React.Component {
   static contextTypes = {
@@ -14,6 +15,7 @@ class Login extends React.Component {
   state = {
     email: '',
     password: '',
+    isLoggedIn: ConstantsStore.isLoggedIn()
   }
 
   onChange = (e) => {

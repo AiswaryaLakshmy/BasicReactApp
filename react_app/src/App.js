@@ -6,6 +6,7 @@ import UsersContainer from './components/UsersContainer'
 import Login from './components/Login'
 import UserForm from './components/UserForm'
 import RootPage from './components/RootPage'
+import Logout from './components/Logout'
 
 const App = () => (
   <Router>
@@ -20,6 +21,9 @@ const App = () => (
         <li>
           <Link to="/login">Login </Link>
         </li>
+        <li>
+          <Link to="/logout">Logout </Link>
+        </li>
       </ul>
 
       <hr />
@@ -27,6 +31,7 @@ const App = () => (
       <Route path='/users_list' component={ UsersContainer } />
       <Route path="/users_create" component={ UserForm } />
       <Route path="/login" component={ Login } />
+      <Route path="/logout" component={ Logout } />
     </div>
   </Router>
 );

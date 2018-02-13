@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import update from 'immutability-helper'
 import axios from 'axios'
+import PropTypes from "prop-types";
+import ConstantsStore from '../helper/ConstantsStore'
 
 class UserForm extends Component {
-  constructor(props) {
-    super(props)
+  constructor(props, context) {
+    super(props, context)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      isLoggedIn: ConstantsStore.isLoggedIn()
     }
   }
 
+  componentDidMount (){
+  }
   handleInput = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
