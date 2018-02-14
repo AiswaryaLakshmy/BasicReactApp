@@ -6,6 +6,7 @@ import axios from 'axios';
 import User from './User'
 import UserForm from './UserForm'
 import Login from './Login'
+import Main from '../Main'
 
 class UsersContainer extends Component {
   constructor(props){
@@ -38,6 +39,7 @@ class UsersContainer extends Component {
     const {users} = this.state;
     return (
       <div>
+        <Main />
         Users
         {this.state.users.map((user) => {
           return(<User user={user} key={user.id} />)

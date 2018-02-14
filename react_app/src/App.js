@@ -2,38 +2,22 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, DefaultRoute } from "react-router-dom";
 
-import UsersContainer from './components/UsersContainer'
-import Login from './components/Login'
-import UserForm from './components/UserForm'
-import RootPage from './components/RootPage'
-import Logout from './components/Logout'
+import Main from './Main'
+import Routes from './Routes'
 
-const App = () => (
-  <Router>
-    <div>
-      <ul>
-        <li>
-          <Link to='/'>Users</Link>
-        </li>
-        <li>
-          <Link to="/users_create">Create new User </Link>
-        </li>
-        <li>
-          <Link to="/login">Login </Link>
-        </li>
-        <li>
-          <Link to="/logout">Logout </Link>
-        </li>
-      </ul>
+class App extends Component {
+  componentWillMount (){
+    this.setState({login: localStorage.getItem('login')})
+  }
 
-      <hr />
-      <Route exact path="/" component={ RootPage } />
-      <Route path='/users_list' component={ UsersContainer } />
-      <Route path="/users_create" component={ UserForm } />
-      <Route path="/login" component={ Login } />
-      <Route path="/logout" component={ Logout } />
-    </div>
-  </Router>
-);
+  render(){
+    return (
+      <div>
+        <Routes />
+      </div>
+    );
+  }
+}
 
 export default App;
+

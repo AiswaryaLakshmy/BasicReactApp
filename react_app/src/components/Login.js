@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import PropTypes from "prop-types";
+import Main from '../Main'
 import ConstantsStore from '../helper/ConstantsStore'
 
 class Login extends React.Component {

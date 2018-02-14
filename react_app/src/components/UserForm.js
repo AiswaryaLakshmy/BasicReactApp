@@ -4,6 +4,7 @@ import update from 'immutability-helper'
 import axios from 'axios'
 import PropTypes from "prop-types";
 import ConstantsStore from '../helper/ConstantsStore'
+import Main from '../Main'
 
 class UserForm extends Component {
   static contextTypes = {
@@ -52,26 +53,22 @@ class UserForm extends Component {
 
   render() {
     const isLoggedIn = ConstantsStore.isLoggedIn()
-    if (localStorage.getItem('login') == 'true') {
-      if (localStorage.getItem('user_role') == 'admin') {
-        return (
-          <div className="name">
-            <p> fjhkj </p>
-            <p> {this.state.isLoggedIn} </p>
-            <input className="input" type="text" name="email" placeholder='Email' value={this.state.email} onChange={this.handleInput} />
-            <input className="input" type="text" name="password" placeholder='Passowrd' value={this.state.password} onChange={this.handleInput}/>
-            <button className='newUser'
-              onClick={this.addNewUser} >
-              Create User
-            </button>
-          </div>
-        );
-      }
-      else {
-        return <Redirect to="/" />
-      }
-    } else {
-      return <Redirect to="/login" />
+    if (localStorage.getItem('login') == 'true' && localStorage.getItem('user_role') == 'admin') {
+      return (
+        <div className="name">
+          <Main />
+          <p> {this.state.isLoggedIn} </p>
+          <input className="input" type="text" name="email" placeholder='Email' value={this.state.email} onChange={this.handleInput} />
+          <input className="input" type="text" name="password" placeholder='Passowrd' value={this.state.password} onChange={this.handleInput}/>
+          <button className='newUser'
+            onClick={this.addNewUser} >
+            Create User
+          </button>
+        </div>
+      );
+    }
+    else {
+      return <Redirect to="/" />
     }
   }
 }
