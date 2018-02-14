@@ -1,8 +1,6 @@
-class Api::V1::ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
+class Api::ApiController < ApplicationController
 
-  # skip_before_action :verify_authenticity_token
-  # acts_as_token_authentication_handler_for User
+  acts_as_token_authentication_handler_for User
 
   def current_user
     @user ||= User.find_by_authentication_token(request.headers['X-User-Token'])
