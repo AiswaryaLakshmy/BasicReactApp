@@ -1,10 +1,12 @@
 import React from "react";
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class CreatedUsers extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   state = {
@@ -25,6 +27,21 @@ class CreatedUsers extends React.Component {
       localStorage.removeItem('user_token')
       localStorage.removeItem('user_email')
       this.props.history.push('/login');
+    })
+    .catch(error => console.log(error))
+  };
+
+  deleteUser(userId) {
+    axios.delete('http://localhost:3001/api/v1/users/'+userId+'.json',{
+      headers: {
+        'Content-Type': 'application/json',
+        'X-User-Token': localStorage.getItem('user_token'),
+        'X-User-Email': localStorage.getItem('user_email')
+     }
+    })
+    .then(response => {
+      console.log(response.data.user)
+      this.setState({usersList: response.data.users})
     })
     .catch(error => console.log(error))
   };
@@ -59,6 +76,12 @@ class CreatedUsers extends React.Component {
         <td className="right aligned">{user.role}</td>
         <td className="right aligned">{user.contact}</td>
         <td className="right aligned">{user.email}</td>
+        <td className="right aligned"><button onClick={this.deleteUser.bind(this, user.id)}>
+            Delete
+          </button></td>
+        <td className="right aligned">
+        <Link to={`/edit_user/${user.id}`}>Edit</Link>
+        </td>
       </tr>
     ));
 
@@ -83,6 +106,8 @@ class CreatedUsers extends React.Component {
             {userRows}
           </tbody>
         </table>
+        <br/>
+        <br/>
         <div>
           <button onClick={this.handleLogout}>
             Logout

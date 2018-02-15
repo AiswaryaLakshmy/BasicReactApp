@@ -26,7 +26,7 @@ class NewUser extends React.Component {
     const role = localStorage.getItem('user_role')
     if (!token){
       this.props.history.push("/login");
-    }else if(token && (role != "admin")){
+    }else if(token && (role !== "admin")){
       this.props.history.push("/");
     }
   };
