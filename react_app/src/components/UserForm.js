@@ -59,7 +59,7 @@ class UserForm extends Component {
           <Main />
           <p> {this.state.isLoggedIn} </p>
           <input className="input" type="text" name="email" placeholder='Email' value={this.state.email} onChange={this.handleInput} />
-          <input className="input" type="text" name="password" placeholder='Passowrd' value={this.state.password} onChange={this.handleInput}/>
+          <input className="input" type="password" name="password" placeholder='Passowrd' value={this.state.password} onChange={this.handleInput}/>
           <button className='newUser'
             onClick={this.addNewUser} >
             Create User

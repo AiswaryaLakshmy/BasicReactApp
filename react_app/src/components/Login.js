@@ -3,6 +3,7 @@ import axios from 'axios'
 import PropTypes from "prop-types";
 import Main from '../Main'
 import ConstantsStore from '../helper/ConstantsStore'
+import loginImage from'../images/img-01.png'
 
 class Login extends React.Component {
   static contextTypes = {
@@ -53,21 +54,38 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2> Login </h2>
-        <input
-          name='email'
-          placeholder='Email'
-          onChange={e => this.onChange(e)}
-          value={this.state.email} />
-        <input
-          name='password'
-          placeholder='Password'
-          type='password'
-          onChange={e => this.onChange(e)}
-          value={this.state.password} />
-        <br />
-        <button onClick={() => this.loginUser()}>Login</button>
+      <div className="limiter">
+        <div className="container-login100">
+          <div className="wrap-login100">
+            <div className="login100-pic js-tilt">
+              <img src={loginImage} alt="IMG" />
+            </div>
+            <div classMame="login100-form validate-form">
+              <span className="login100-form-title">
+                <h2> Login </h2>
+              </span>
+              <div className="wrap-input100 validate-input" >
+                <input className='input100'
+                  name='email'
+                  placeholder='Email'
+                  onChange={e => this.onChange(e)}
+                  value={this.state.email} />
+              </div>
+              <div className="wrap-input100 validate-input">
+                <input className='input100'
+                  name='password'
+                  placeholder='Password'
+                  type='password'
+                  onChange={e => this.onChange(e)}
+                  value={this.state.password} />
+              </div>
+              <br />
+              <div className="container-login100-form-btn">
+                <button className="login100-form-btn" onClick={() => this.loginUser()}>Login</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
