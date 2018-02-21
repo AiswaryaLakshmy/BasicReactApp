@@ -7,6 +7,11 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     render json: {data: @users}
   end
 
+  def show
+    @user = User.find_by(id: params[:id])
+    render json: {data: @user}
+  end
+
   def update
     if @user.update_attributes(user_params)
       render json: {status: 200, message: "update Success", user: @user}
